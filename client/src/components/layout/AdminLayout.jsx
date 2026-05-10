@@ -9,9 +9,9 @@ const links = [
 ];
 
 const AdminLayout = () => (
-  <div className="flex min-h-[calc(100vh-64px)]">
+  <div className="flex min-h-[calc(100vh-64px)] bg-gray-950">
     {/* Sidebar */}
-    <aside className="hidden md:flex flex-col w-60 bg-gray-50 border-r border-gray-200 dark:bg-gray-900 dark:border-gray-800 px-3 py-6 shrink-0 transition-colors duration-300">
+    <aside className="hidden md:flex flex-col w-60 bg-gray-900 border-r border-gray-800 px-3 py-6 shrink-0">
       <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-3">
         Admin Panel
       </p>
@@ -24,7 +24,7 @@ const AdminLayout = () => (
               `flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition-all ${
                 isActive
                   ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/25"
-                  : "text-gray-600 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                  : "text-gray-400 hover:bg-gray-800 hover:text-white"
               }`
             }
           >
@@ -35,8 +35,8 @@ const AdminLayout = () => (
     </aside>
 
     {/* Mobile Admin Nav */}
-    <div className="md:hidden w-full">
-      <div className="flex overflow-x-auto gap-2 p-3 bg-gray-50 border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800">
+    <div className="md:hidden w-full bg-gray-950">
+      <div className="flex overflow-x-auto gap-2 p-3 bg-gray-900 border-b border-gray-800">
         {links.map(({ to, icon: Icon, label }) => (
           <NavLink
             key={to}
@@ -45,7 +45,7 @@ const AdminLayout = () => (
               `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
                 isActive
                   ? "bg-indigo-600 text-white"
-                  : "bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                  : "bg-gray-800 text-gray-400"
               }`
             }
           >
@@ -59,7 +59,7 @@ const AdminLayout = () => (
     </div>
 
     {/* Main content */}
-    <main className="hidden md:block flex-1 p-8 overflow-auto bg-white dark:bg-gray-950 transition-colors duration-300">
+    <main className="hidden md:block flex-1 p-8 overflow-auto bg-gray-950">
       <Outlet />
     </main>
   </div>

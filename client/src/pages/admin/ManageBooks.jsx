@@ -10,6 +10,18 @@ import ConfirmModal from "../../components/ui/ConfirmModal";
 import Loader from "../../components/ui/Loader";
 import { FiPlus, FiEdit2, FiTrash2, FiX, FiSearch } from "react-icons/fi";
 
+const CATEGORIES = [
+  "Fiction",
+  "Non-Fiction",
+  "Science",
+  "History",
+  "Biography",
+  "Self Help",
+  "Technology",
+  "Fantasy",
+  "Mystery",
+];
+
 const EMPTY = {
   title: "",
   author: "",
@@ -94,11 +106,10 @@ const ManageBooks = () => {
     setDeleteId(null);
   };
 
-  const fields = [
+  const textFields = [
     { key: "title", placeholder: "Book Title *", col: 2, required: true },
     { key: "author", placeholder: "Author *", required: true },
     { key: "isbn", placeholder: "ISBN" },
-    { key: "category", placeholder: "Category *", required: true },
     { key: "publisher", placeholder: "Publisher" },
     {
       key: "totalCopies",
@@ -107,7 +118,7 @@ const ManageBooks = () => {
       required: true,
     },
     { key: "publishedYear", placeholder: "Published Year", type: "number" },
-    { key: "tags", placeholder: "Tags (comma separated)" },
+    { key: "tags", placeholder: "Tags (comma separated)", col: 2 },
   ];
 
   return (
@@ -153,18 +164,96 @@ const ManageBooks = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
-              {fields.map(({ key, placeholder, col, type, required }) => (
-                <input
-                  key={key}
-                  className={`input ${col === 2 ? "col-span-2" : ""}`}
-                  placeholder={placeholder}
-                  type={type || "text"}
-                  value={form[key]}
-                  onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-                  required={required}
-                />
-              ))}
+              {/* Title — full width */}
+              <input
+                className="input col-span-2"
+                placeholder="Book Title *"
+                type="text"
+                value={form.title}
+                onChange={(e) => setForm({ ...form, title: e.target.value })}
+                required
+              />
 
+              {/* Author */}
+              <input
+                className="input"
+                placeholder="Author *"
+                type="text"
+                value={form.author}
+                onChange={(e) => setForm({ ...form, author: e.target.value })}
+                required
+              />
+
+              {/* ISBN */}
+              <input
+                className="input"
+                placeholder="ISBN"
+                type="text"
+                value={form.isbn}
+                onChange={(e) => setForm({ ...form, isbn: e.target.value })}
+              />
+
+              {/* Category dropdown */}
+              <select
+                className="input col-span-2 cursor-pointer"
+                value={form.category}
+                onChange={(e) => setForm({ ...form, category: e.target.value })}
+                required
+              >
+                <option value="" disabled>
+                  Select Category *
+                </option>
+                {CATEGORIES.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+
+              {/* Publisher */}
+              <input
+                className="input"
+                placeholder="Publisher"
+                type="text"
+                value={form.publisher}
+                onChange={(e) =>
+                  setForm({ ...form, publisher: e.target.value })
+                }
+              />
+
+              {/* Total Copies */}
+              <input
+                className="input"
+                placeholder="Total Copies *"
+                type="number"
+                value={form.totalCopies}
+                onChange={(e) =>
+                  setForm({ ...form, totalCopies: e.target.value })
+                }
+                required
+              />
+
+              {/* Published Year */}
+              <input
+                className="input"
+                placeholder="Published Year"
+                type="number"
+                value={form.publishedYear}
+                onChange={(e) =>
+                  setForm({ ...form, publishedYear: e.target.value })
+                }
+              />
+
+              {/* Tags */}
+              <input
+                className="input"
+                placeholder="Tags (comma separated)"
+                type="text"
+                value={form.tags}
+                onChange={(e) => setForm({ ...form, tags: e.target.value })}
+              />
+
+              {/* Description */}
               <textarea
                 className="input col-span-2 resize-none"
                 rows={3}
@@ -175,6 +264,7 @@ const ManageBooks = () => {
                 }
               />
 
+              {/* Cover Upload */}
               <div className="col-span-2">
                 <label className="text-gray-400 text-sm mb-2 block">
                   Cover Image {editing && "(leave empty to keep current)"}

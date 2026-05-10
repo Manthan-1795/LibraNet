@@ -3,9 +3,9 @@ import { FiStar, FiBookOpen } from "react-icons/fi";
 
 const BookCard = ({ book }) => (
   <Link to={`/books/${book._id}`} className="group block">
-    <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-indigo-400/60 hover:shadow-lg hover:shadow-indigo-100 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col dark:bg-gray-900 dark:border-gray-800 dark:hover:border-indigo-500/50 dark:hover:shadow-indigo-500/10">
+    <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 h-full flex flex-col">
       {/* Cover */}
-      <div className="relative h-52 bg-gray-100 dark:bg-gray-800 overflow-hidden shrink-0">
+      <div className="relative h-52 bg-gray-800 overflow-hidden shrink-0">
         <img
           src={book.cover?.url || "/default-book.png"}
           alt={book.title}
@@ -14,7 +14,7 @@ const BookCard = ({ book }) => (
             e.target.src = "/default-book.png";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
         <span className="absolute top-3 right-3 bg-indigo-600/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">
           {book.category}
         </span>
@@ -27,18 +27,18 @@ const BookCard = ({ book }) => (
 
       {/* Info */}
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-semibold text-gray-900 dark:text-gray-100 truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors text-sm">
+        <h3 className="font-semibold text-gray-100 truncate group-hover:text-indigo-400 transition-colors text-sm">
           {book.title}
         </h3>
         <p className="text-gray-500 text-xs mt-0.5 truncate">{book.author}</p>
         <div className="flex items-center justify-between mt-auto pt-3">
-          <div className="flex items-center gap-1 text-yellow-500">
-            <FiStar className="fill-yellow-500" size={12} />
+          <div className="flex items-center gap-1 text-yellow-400">
+            <FiStar className="fill-yellow-400" size={12} />
             <span className="text-xs font-medium">
               {book.avgRating > 0 ? book.avgRating : "N/A"}
             </span>
           </div>
-          <div className="flex items-center gap-1 text-gray-400 text-xs">
+          <div className="flex items-center gap-1 text-gray-500 text-xs">
             <FiBookOpen size={12} />
             <span>
               {book.availableCopies}/{book.totalCopies}

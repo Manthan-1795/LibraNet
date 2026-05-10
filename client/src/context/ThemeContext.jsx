@@ -6,7 +6,7 @@ export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem("smartlib-theme");
     if (stored) return stored === "dark";
-    return false; // default = light
+    return true; // default = dark
   });
 
   useEffect(() => {

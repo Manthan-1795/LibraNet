@@ -13,6 +13,8 @@ const app = express();
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:3000",
+  "https://libranet-ashy.vercel.app",
+  "https://libranetonline.netlify.app",
 ].filter(Boolean);
 
 app.use(

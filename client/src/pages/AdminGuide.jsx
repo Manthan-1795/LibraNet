@@ -96,8 +96,8 @@ const CopyButton = ({ text }) => {
 const AdminGuide = () => {
   const [showPass, setShowPass] = useState(false);
 
-  const email = "admin@smartlib.com";
-  const password = "admin1234";
+  const email = "koremanthanp@gmail.com";
+  const password = "mk123123";
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12 animate-slide-up">
